@@ -1,6 +1,7 @@
 #ifndef UNARYEXPRESSION_H
 #define UNARYEXPRESSION_H
-
+#include "../common.h"
+#include "Expression.h"
 
 namespace core
 {
@@ -8,7 +9,7 @@ namespace core
     class UnaryExpression
     {
         public:
-            virtual T Evaluate() const = 0;
+            virtual T Evaluate(Expression<T>) const = 0;
         protected:
         private:
     };

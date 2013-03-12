@@ -1,5 +1,6 @@
 #ifndef EXPRESSION_H
 #define EXPRESSION_H
+#include "../common.h"
 
 namespace core
 {
