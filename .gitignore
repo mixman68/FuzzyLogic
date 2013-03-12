@@ -14,7 +14,11 @@
 
 # XCODE #
 *.xcodeproj
+*.xcodeproj/*.*
 FuzzyLogic.1
+
+# MAC #
+.DS_Store
 
 # Netbeans #
 nbproject/private/
