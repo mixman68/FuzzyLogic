@@ -3,10 +3,6 @@
 
 #include "Then.h"
 
-<<<<<<< HEAD
-=======
-
->>>>>>> d2b5b4cc0d012bec25f9c9986ea358680e848102
 namespace fuzzy
 {
     template <class T>
@@ -26,8 +22,4 @@ namespace fuzzy
 
     }
 }
-<<<<<<< HEAD
-
-=======
->>>>>>> d2b5b4cc0d012bec25f9c9986ea358680e848102
 #endif // THENMIN_H
