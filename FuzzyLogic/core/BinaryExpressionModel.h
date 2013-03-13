@@ -1,6 +1,7 @@
 #ifndef BINARYEXPRESSIONMODEL_H
 #define BINARYEXPRESSIONMODEL_H
 #include "BinaryExpression.h"
+#include "NullExpressionException.h"
 
 namespace core
 {
@@ -27,9 +28,12 @@ namespace core
     template<class T>
     T BinaryExpressionModel<T>::Evaluate() const
     {
-        if(left !=NULL && right !=NULL)
-            return evaluate(&left,&right);
-        return NULL;
+        if(left == NULL)
+            throw (NullExpressionException("left operand missing"));
+        if(right == NULL)
+            throw (NullExpressionException("right operand missing"));
+        
+        return evaluate(&left,&right);
     }
 
 }

@@ -1,6 +1,6 @@
 #ifndef THENMULT_H
 #define THENMULT_H
-
+#include "Then.h"
 
 namespace fuzzy
 {
