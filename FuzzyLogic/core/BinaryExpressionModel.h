@@ -33,7 +33,7 @@ namespace core
         if(right == NULL)
             throw (NullExpressionException("right operand missing"));
 
-        return evaluate(&left,&right);
+        return Evaluate(&left,&right);
     }
 
 }
