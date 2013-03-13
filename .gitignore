@@ -34,3 +34,7 @@ nb-configuration.xml
 
 # Cache files #
 cache/
+/FuzzyLogic/framework.cbp
+/FuzzyLogic/framework.depend
+/FuzzyLogic/framework.layout
+/FuzzyLogic/bin
