@@ -19,7 +19,8 @@ namespace fuzzy
     {
         T l = left->Evaluate();
         T r = right->Evaluate();
-
+        T res = l+r;
+        return (res<1)? res : 1;
     }
 }
 #endif // ORPLUS_H
