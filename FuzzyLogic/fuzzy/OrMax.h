@@ -1,12 +1,12 @@
-#ifndef ANDMIN_H
-#define ANDMIN_H
+#ifndef ORMAX_H
+#define ORMAX_H
 
-#include "And.h"
+#include "Or.h"
 
 namespace fuzzy
 {
     template <class T>
-    class AndMin: public And<T>
+    class OrMax: public Or<T>
     {
         public:
             virtual T Evaluate(Expression<T>*,Expression<T>*) const;
@@ -15,15 +15,15 @@ namespace fuzzy
     };
 
     template <class T>
-    T AndMin<T>::Evaluate(Expression<T>* left, Expression<T>* right) const
+    T OrMax<T>::Evaluate(Expression<T>* left, Expression<T>* right) const
     {
         T l = left->Evaluate();
         T r = right->Evaluate();
-        return (l>r)? r : l;
+        return (l>r)? l : r;
     }
     
     
     
 }
 
-#endif // ANDMIN_H
+#endif // ORMAX_H

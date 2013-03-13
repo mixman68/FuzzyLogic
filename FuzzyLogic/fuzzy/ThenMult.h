@@ -1,7 +1,6 @@
 #ifndef THENMULT_H
 #define THENMULT_H
 
-#include "Then.h"
 
 namespace fuzzy
 {
@@ -22,5 +21,4 @@ namespace fuzzy
 
     }
 }
-
 #endif // THENMULT_H

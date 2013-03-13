@@ -20,6 +20,8 @@ namespace fuzzy
     {
         T l = left->Evaluate();
         T r = right->Evaluate();
+        T res = l*r;
+        return res;
 
     }
 }
