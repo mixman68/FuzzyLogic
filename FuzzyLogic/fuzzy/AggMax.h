@@ -19,6 +19,7 @@ namespace fuzzy
     {
         T l = left->Evaluate();
         T r = right->Evaluate();
+        return (l>r)? l : r;
 
     }
 }
