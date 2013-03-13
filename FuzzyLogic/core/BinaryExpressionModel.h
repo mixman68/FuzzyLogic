@@ -9,6 +9,8 @@ namespace core
     class BinaryExpressionModel: public BinaryExpression<T>, Expression<T>
     {
         public:
+            BinaryExpressionModel();
+            BinaryExpressionModel(BinaryExpression<T>*,Expression<T>*,Expression<T>*);
             virtual T Evaluate() const;
             virtual T Evaluate(Expression<T>*,Expression<T>*) const;
             virtual void SetOperareur(BinaryExpression<T>*);
@@ -19,6 +21,19 @@ namespace core
             BinaryExpression<T>* operateur;
             Expression<T>* left,right;
     };
+
+    template<class T>
+    BinaryExpressionModel<T>::BinaryExpressionModel()
+    {
+    }
+
+    template<class T>
+    BinaryExpressionModel<T>::BinaryExpressionModel(BinaryExpression<T>* _operateur,Expression<T>* _left,Expression<T>* _right)
+    {
+        left=_left;
+        right=_right;
+        operateur=_operateur;
+    }
 
     template<class T>
     T BinaryExpressionModel<T>::Evaluate(Expression<T>* l, Expression<T>* r) const
