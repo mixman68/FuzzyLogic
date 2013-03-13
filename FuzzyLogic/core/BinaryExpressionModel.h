@@ -11,6 +11,9 @@ namespace core
         public:
             virtual T Evaluate() const;
             virtual T Evaluate(Expression<T>*,Expression<T>*) const;
+            virtual void SetOperareur(BinaryExpression<T>*);
+            virtual void SetLeft(Expression<T>*);
+            virtual void SetRight(Expression<T>*);
         protected:
         private:
             BinaryExpression<T>* operateur;
@@ -34,6 +37,24 @@ namespace core
             throw (NullExpressionException("right operand missing"));
 
         return Evaluate(&left,&right);
+    }
+
+    template<class T>
+    void BinaryExpressionModel<T>::SetOperareur(BinaryExpression<T>* _operateur)
+    {
+        operateur=_operateur;
+    }
+
+    template<class T>
+    void BinaryExpressionModel<T>::SetLeft(Expression<T>* _left)
+    {
+        left=_left;
+    }
+
+    template<class T>
+    void BinaryExpressionModel<T>::SetRight(Expression<T>* _right)
+    {
+        right=_right;
     }
 
 }
