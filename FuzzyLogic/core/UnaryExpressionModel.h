@@ -1,6 +1,7 @@
 #ifndef UNARYEXPRESSIONMODEL_H
 #define UNARYEXPRESSIONMODEL_H
 #include "UnaryExpression.h"
+#include "NullExpressionException.h"
 
 namespace core
 {
@@ -12,25 +13,25 @@ namespace core
             virtual T Evaluate(Expression<T>*) const;
         protected:
         private:
-            UnaryExpression<T> operateur;
-            Expression<T> operand;
+            UnaryExpression<T>* operateur;
+            Expression<T>* operand;
     };
 
 
     template<class T>
     T UnaryExpressionModel<T>::Evaluate(Expression<T>* o) const
     {
-        if(operateur !=NULL)
-            return operateur.evaluate(o);
-        return NULL;
+        if(operateur == NULL)
+            throw (NullExpressionException("operator missing"));
+        return operateur->evaluate(o);
     }
 
     template<class T>
     T UnaryExpressionModel<T>::Evaluate() const
     {
         if(operand !=NULL)
-            return evaluate(operand);
-        return NULL;
+            throw (NullExpressionException("operator missing"));
+        return Evaluate(&operand);
     }
 
 }
