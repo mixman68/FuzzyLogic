@@ -16,7 +16,7 @@ namespace fuzzy
     };
 
     template <class T>
-    T AggMax<T>::Evaluate(Expression<T>* left, Expression<T>* right) const
+    T AggPlus<T>::Evaluate(Expression<T>* left, Expression<T>* right) const
     {
         T l = left->Evaluate();
         T r = right->Evaluate();
