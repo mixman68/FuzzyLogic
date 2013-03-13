@@ -1,6 +1,7 @@
 #ifndef VALUEMODEL_H
 #define VALUEMODEL_H
 #include "Expression.h"
+#include "NullExpressionException.h"
 
 namespace core
 {
@@ -18,6 +19,8 @@ namespace core
     template<class T>
     T ValueModel<T>::Evaluate() const
     {
+        if(value==NULL)
+            return NULL;
         return value;
     }
 
