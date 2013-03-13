@@ -18,6 +18,7 @@ namespace fuzzy
     T NotMinus1<T>::Evaluate(Expression<T>* _operand) const
     {
         T operand = _operand->Evaluate();
+        return - operand;
 
     }
 }
