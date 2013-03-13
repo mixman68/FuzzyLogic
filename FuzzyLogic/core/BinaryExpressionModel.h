@@ -13,16 +13,16 @@ namespace core
             virtual T Evaluate(Expression<T>*,Expression<T>*) const;
         protected:
         private:
-            BinaryExpression<T> operateur;
-            Expression<T> left,right;
+            BinaryExpression<T>* operateur;
+            Expression<T>* left,right;
     };
 
     template<class T>
     T BinaryExpressionModel<T>::Evaluate(Expression<T>* l, Expression<T>* r) const
     {
-        if(operateur !=NULL)
-            return operateur.evaluate(l,r);
-        return NULL;
+        if(operateur == NULL)
+            throw (NullExpressionException("operator missing"));
+        return operateur->Evaluate();
     }
 
     template<class T>
@@ -32,7 +32,7 @@ namespace core
             throw (NullExpressionException("left operand missing"));
         if(right == NULL)
             throw (NullExpressionException("right operand missing"));
-        
+
         return evaluate(&left,&right);
     }
 
