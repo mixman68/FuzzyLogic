@@ -10,14 +10,22 @@ namespace fuzzy
     {
         public:
             virtual T Evaluate(Expression<T>*) const;
+        isTriangle(T& tMin, T& tMid,T& tMax);
         protected:
         private:
+            T triangleMin, triangleMid, triangleMax;
     };
+    
+    template <class T>
+    isTriangle<T>::isTriangle(T& tMin, T& tMid,T& tMax)  : triangleMin(tMin), triangleMid(tMid), triangleMax(tMax)
+    {}
 
     template <class T>
     T isTriangle<T>::Evaluate(Expression<T>* _operand) const
     {
         T operand = _operand->Evaluate();
+        return operand;
+        //TODO
 
     }
 }
