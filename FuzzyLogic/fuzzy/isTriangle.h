@@ -13,19 +13,30 @@ namespace fuzzy
         isTriangle(T& tMin, T& tMid,T& tMax);
         protected:
         private:
-            T triangleMin, triangleMid, triangleMax;
+            T min, med, max;
     };
     
     template <class T>
-    isTriangle<T>::isTriangle(T& tMin, T& tMid,T& tMax)  : triangleMin(tMin), triangleMid(tMid), triangleMax(tMax)
+    isTriangle<T>::isTriangle(T& tMin, T& tMid,T& tMax)  : min(tMin), med(tMid), max(tMax)
     {}
 
     template <class T>
     T isTriangle<T>::Evaluate(Expression<T>* _operand) const
     {
         T operand = _operand->Evaluate();
-        return operand;
-        //TODO
+        T result;
+        
+        if(operand<=min || operand >=max)
+            return 0;
+        
+        if (operand<=med)
+            result = (operand - min)/(med-min);            
+        else if (operand>med)
+            result = (max - operand)/(max-med);
+        
+        return result;
+        
+        
 
     }
 }
