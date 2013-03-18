@@ -14,10 +14,12 @@
 class NullExpressionException
 {
 public:
-    NullExpressionException(const char*);
+    NullExpressionException(unsigned char);
     virtual std::ostream& PrintOn(std::ostream&)
     const;
 private:
+    const unsigned char errorDescription;
+
 };
 
 #endif /* defined(__FuzzyLogic__NullExpressionException__) */
