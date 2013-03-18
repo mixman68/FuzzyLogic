@@ -41,7 +41,7 @@ namespace core
     {
         if(operateur == NULL)
             throw (NullExpressionException("operator missing"));
-        return operateur->Evaluate();
+        return operateur->Evaluate(l,r);
     }
 
     template<class T>
