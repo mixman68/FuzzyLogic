@@ -14,7 +14,7 @@
 class NullExpressionException
 {
 public:
-    NullExpressionException(unsigned char);
+    NullExpressionException(const char*);
     virtual std::ostream& PrintOn(std::ostream&)
     const;
 private:

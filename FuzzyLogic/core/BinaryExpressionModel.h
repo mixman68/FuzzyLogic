@@ -19,7 +19,8 @@ namespace core
         protected:
         private:
             BinaryExpression<T>* operateur;
-            Expression<T>* left,right;
+            Expression<T>* left;
+            Expression<T>* right;
     };
 
     template<class T>
