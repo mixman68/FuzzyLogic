@@ -9,7 +9,7 @@ namespace core
     class UnaryExpression
     {
         public:
-            virtual T Evaluate(Expression<T>) const = 0;
+            virtual T Evaluate(Expression<T>*) const = 0;
         protected:
         private:
     };

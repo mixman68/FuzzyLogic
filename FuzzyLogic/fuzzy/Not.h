@@ -13,7 +13,7 @@ namespace fuzzy
     class Not: public UnaryExpression<T>
     {
         public:
-            virtual T Evaluate(Expression<T>*) const;
+            virtual T Evaluate(Expression<T>*) const = 0;
         protected:
         private:
     };

@@ -44,9 +44,9 @@ namespace core
     template<class T>
     T UnaryExpressionModel<T>::Evaluate() const
     {
-        if(operand !=NULL)
+        if(operand ==NULL)
             throw (NullExpressionException("operand missing"));
-        return Evaluate(&operand);
+        return Evaluate(operand);
     }
 
     template<class T>
