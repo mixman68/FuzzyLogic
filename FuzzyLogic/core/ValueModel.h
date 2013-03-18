@@ -10,9 +10,9 @@ namespace core
     {
         public:
             ValueModel();
-            ValueModel(T);
+            ValueModel(T&);
             virtual T Evaluate() const;
-            void SetValue(T);
+            void SetValue(T&);
         protected:
         private:
         T value;
@@ -24,9 +24,9 @@ namespace core
     }
 
     template<class T>
-    ValueModel<T>::ValueModel(T _value)
+    ValueModel<T>::ValueModel(T& _value):
+    value(_value)
     {
-        value=_value;
     }
 
     template<class T>
@@ -38,7 +38,7 @@ namespace core
     }
 
     template<class T>
-    void ValueModel<T>::SetValue(T _value)
+    void ValueModel<T>::SetValue(T& _value)
     {
         value=_value;
     }
