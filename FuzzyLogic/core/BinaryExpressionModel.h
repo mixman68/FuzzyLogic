@@ -52,7 +52,7 @@ namespace core
         if(right == NULL)
             throw (NullExpressionException("right operand missing"));
 
-        return Evaluate(&left,&right);
+        return Evaluate(left,right);
     }
 
     template<class T>

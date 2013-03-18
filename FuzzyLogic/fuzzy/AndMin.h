@@ -21,9 +21,9 @@ namespace fuzzy
         T r = right->Evaluate();
         return (l>r)? r : l;
     }
-    
-    
-    
+
+
+
 }
 
 #endif // ANDMIN_H
