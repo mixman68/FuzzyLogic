@@ -7,3 +7,12 @@
 //
 
 #include "NullExpressionException.h"
+
+NullExpressionException::NullExpressionException(unsigned char m):
+errorDescription(m)
+{}
+std::ostream& NullExpressionException::PrintOn(std::ostream& os)
+const
+{
+    return os << "Null Expression Exception : "<< errorDescription;
+}
