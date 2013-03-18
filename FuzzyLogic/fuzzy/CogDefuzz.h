@@ -8,7 +8,7 @@ using namespace core;
 namespace fuzzy
 {
     template <class T>
-    class CogDefuzz: public BinaryExpression<T>
+    class CogDefuzz: public MamdaniDefuzz<T>
     {
         public:
             virtual T Evaluate(Expression<T>*,Expression<T>*) const;
