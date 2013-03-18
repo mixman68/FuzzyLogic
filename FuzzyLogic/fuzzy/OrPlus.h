@@ -6,7 +6,7 @@
 namespace fuzzy
 {
     template <class T>
-    class OrMin: public Or<T>
+    class OrPlus: public Or<T>
     {
         public:
             virtual T Evaluate(Expression<T>*,Expression<T>*) const;
@@ -15,7 +15,7 @@ namespace fuzzy
     };
 
     template <class T>
-    T OrMin<T>::Evaluate(Expression<T>* left, Expression<T>* right) const
+    T OrPlus<T>::Evaluate(Expression<T>* left, Expression<T>* right) const
     {
         T l = left->Evaluate();
         T r = right->Evaluate();
