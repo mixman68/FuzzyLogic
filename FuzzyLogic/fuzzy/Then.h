@@ -12,7 +12,7 @@ namespace fuzzy
     class Then: public BinaryExpression<T>
     {
         public:
-            virtual T Evaluate(Expression<T>*,Expression<T>*) const;
+            virtual T Evaluate(Expression<T>*,Expression<T>*) const = 0;
         protected:
         private:
     };

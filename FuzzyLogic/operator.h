@@ -10,13 +10,16 @@
 #include "fuzzy/AndMult.h"
 
 #include "fuzzy/Not.h"
+#include "fuzzy/NotMinus1.h"
 
 
 #include "fuzzy/Or.h"
-
+#include "fuzzy/OrMax.h"
+#include "fuzzy/OrPlus.h"
 
 #include "fuzzy/Then.h"
-
+#include "fuzzy/ThenMin.h"
+#include "fuzzy/ThenMult.h"
 
 #include "fuzzy/is.h"
 
