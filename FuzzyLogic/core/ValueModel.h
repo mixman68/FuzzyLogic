@@ -33,7 +33,7 @@ namespace core
     T ValueModel<T>::Evaluate() const
     {
         if(value==NULL)
-            return NULL;
+            throw (NullExpressionException("value missing"));
         return value;
     }
 
