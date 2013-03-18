@@ -8,7 +8,7 @@
 
 #include "NullExpressionException.h"
 
-NullExpressionException::NullExpressionException(unsigned char m):
+NullExpressionException::NullExpressionException(const char* m):
 errorDescription(m)
 {}
 std::ostream& NullExpressionException::PrintOn(std::ostream& os)

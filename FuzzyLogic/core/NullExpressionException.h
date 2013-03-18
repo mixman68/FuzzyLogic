@@ -14,11 +14,10 @@
 class NullExpressionException
 {
 public:
-    NullExpressionException(unsigned char);
-    virtual std::ostream& PrintOn(std::ostream&)
-    const;
+    NullExpressionException(const char*);
+    virtual std::ostream& PrintOn(std::ostream&) const;
 private:
-    const unsigned char errorDescription;
+    const char* errorDescription;
 
 };
 
