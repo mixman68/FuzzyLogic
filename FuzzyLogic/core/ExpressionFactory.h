@@ -2,6 +2,8 @@
 #define EXPRESSIONFACTORY_H
 
 #include "Expression.h"
+#include "UnaryExpressionModel.h"
+#include "BinaryExpressionModel.h"
 
 namespace core
 {
@@ -9,31 +11,31 @@ namespace core
     class ExpressionFactory
     {
         public:
-            Expression Hold(Expression);
-            newUnary(UnaryExpression,Expression);
-            newBinary(BinaryExpression,Expression,Expression);
+            Expression<T> Hold(Expression<T>);
+            UnaryExpressionModel<T> newUnary(UnaryExpression<T>,Expression<T>);
+            BinaryExpressionModel<T>  newBinary(BinaryExpression<T>,Expression<T>,Expression<T>);
         protected:
         private:
     };
 
 
     template<class T>
-    ExpressionFactory<T>::Hold(Expression expr)
+    Expression<T> ExpressionFactory<T>::Hold(Expression<T> expr)
     {
         //todo
         return NULL;
     }
 
     template<class T>
-    ExpressionFactory<T>::newUnary(UnaryExpression ope, Expression o)
+    UnaryExpressionModel<T> ExpressionFactory<T>::newUnary(UnaryExpression<T> ope, Expression<T> o)
     {
-        return new UnaryExpressionModel(ope,o);
+        return new UnaryExpressionModel<T>(ope,o);
     }
 
     template<class T>
-    ExpressionFactory<T>::newBinary(BinaryExpression ope, Expression l, Expression r)
+    BinaryExpressionModel<T> ExpressionFactory<T>::newBinary(BinaryExpression<T> ope, Expression<T> l, Expression<T> r)
     {
-        return new BinaryExpressionModel(ope,l,r);
+        return new BinaryExpressionModel<T>(ope,l,r);
     }
 
 }
