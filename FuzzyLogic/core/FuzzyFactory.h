@@ -11,13 +11,13 @@ namespace core
     class FuzzyFactory: public ExpressionFactory<T>
     {
         public:
-             Expression<T>* newAnd(Expression<T>*,Expression<T>*);
-             Expression<T>* newOr(Expression<T>*,Expression<T>*);
-             Expression<T>* newThen(Expression<T>*,Expression<T>*);
-             Expression<T>* newAgg(Expression<T>*,Expression<T>*);
-             Expression<T>* newDefyzz(Expression<T>*,Expression<T>*);
-             Expression<T>* newNot(Expression<T>*);
-             Expression<T>* newIs(fuzzy::is<T>*, Expression<T>*);
+             Expression<T>* NewAnd(Expression<T>*,Expression<T>*);
+             Expression<T>* NewOr(Expression<T>*,Expression<T>*);
+             Expression<T>* NewThen(Expression<T>*,Expression<T>*);
+             Expression<T>* NewAgg(Expression<T>*,Expression<T>*);
+             Expression<T>* NewDefyzz(Expression<T>*,Expression<T>*);
+             Expression<T>* NewNot(Expression<T>*);
+             Expression<T>* NewIs(fuzzy::is<T>*, Expression<T>*);
         protected:
         private:
     };

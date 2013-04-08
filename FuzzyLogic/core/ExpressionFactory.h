@@ -14,8 +14,8 @@ namespace core
     {
         public:
             Expression<T>* Hold(Expression<T>* );
-            UnaryExpressionModel<T>* newUnary(UnaryExpression<T>*,Expression<T>*);
-            BinaryExpressionModel<T>*  newBinary(BinaryExpression<T>*,Expression<T>*,Expression<T>*);
+            UnaryExpressionModel<T>* NewUnary(UnaryExpression<T>*,Expression<T>*);
+            BinaryExpressionModel<T>*  NewBinary(BinaryExpression<T>*,Expression<T>*,Expression<T>*);
         protected:
         private:
             std::vector<Expression<T>*> memory;
@@ -30,7 +30,7 @@ namespace core
     }
 
     template<class T>
-    UnaryExpressionModel<T>* ExpressionFactory<T>::newUnary(UnaryExpression<T>* ope, Expression<T>* o)
+    UnaryExpressionModel<T>* ExpressionFactory<T>::NewUnary(UnaryExpression<T>* ope, Expression<T>* o)
     {
         UnaryExpressionModel<T>* tmp = new UnaryExpressionModel<T>(ope,o);
         memory.push_back(tmp);
@@ -38,7 +38,7 @@ namespace core
     }
 
     template<class T>
-    BinaryExpressionModel<T>* ExpressionFactory<T>::newBinary(BinaryExpression<T>* ope, Expression<T>* l, Expression<T>* r)
+    BinaryExpressionModel<T>* ExpressionFactory<T>::NewBinary(BinaryExpression<T>* ope, Expression<T>* l, Expression<T>* r)
     {
         BinaryExpressionModel<T>* tmp = new BinaryExpressionModel<T>(ope,l,r);
         memory.push_back(tmp);
