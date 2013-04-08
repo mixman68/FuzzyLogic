@@ -6,7 +6,7 @@
 #include "../operator.h"
 #include "../expr.h"
 #include "BinaryShadowExpression.h"
-#include "UnaryShadowExpression.h"
+
 
 
 namespace core
@@ -25,7 +25,7 @@ namespace core
         protected:
         private:
             BinaryShadowExpression<T>* cul;
-            UnaryShadowExpression<T>* non;
+           // UnaryShadowExpression<T>* non;
     };
 
 

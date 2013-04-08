@@ -6,8 +6,8 @@
 //  Copyright (c) 2013 Clément Raussin. All rights reserved.
 //
 
-#ifndef __FuzzyLogic__BinaryShadowExpression__
-#define __FuzzyLogic__BinaryShadowExpression__
+#ifndef __FuzzyLogic__UnaryShadowExpression__
+#define __FuzzyLogic__UnaryShadowExpression__
 
 #include <iostream>
 #include "NullExpressionException.h"
@@ -48,4 +48,4 @@ namespace core
     
 }
 
-#endif /* defined(__FuzzyLogic__BinaryShadowExpression__) */
+#endif /* defined(__FuzzyLogic__UnaryShadowExpression__) */
