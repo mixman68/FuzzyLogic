@@ -9,7 +9,6 @@
 #ifndef __FuzzyLogic__BinaryShadowExpression__
 #define __FuzzyLogic__BinaryShadowExpression__
 
-#include <iostream>
 #include "NullExpressionException.h"
 #include "BinaryExpression.h"
 
@@ -19,6 +18,7 @@ namespace core
     class BinaryShadowExpression : public BinaryExpression<T>
     {
     public:
+        BinaryShadowExpression();
         BinaryShadowExpression(BinaryExpression<T>*);
         virtual T Evaluate(Expression<T>*,Expression<T>*) const;
         virtual void SetTarget(BinaryExpression<T>*);
@@ -29,6 +29,11 @@ namespace core
     
     template<class T>
     BinaryShadowExpression<T>::BinaryShadowExpression(BinaryExpression<T>* _target): target(_target)
+    {
+    }
+    
+    template<class T>
+    BinaryShadowExpression<T>::BinaryShadowExpression()
     {
     }
     
