@@ -32,13 +32,17 @@ namespace core
     template<class T>
     UnaryExpressionModel<T> ExpressionFactory<T>::newUnary(UnaryExpression<T>* ope, Expression<T>* o)
     {
-        return new UnaryExpressionModel<T>(ope,o);
+        UnaryExpressionModel<T>* tmp = new UnaryExpressionModel<T>(ope,o);
+        memory.push_back(tmp);
+        return tmp;
     }
 
     template<class T>
     BinaryExpressionModel<T> ExpressionFactory<T>::newBinary(BinaryExpression<T>* ope, Expression<T>* l, Expression<T>* r)
     {
-        return new BinaryExpressionModel<T>(ope,l,r);
+        BinaryExpressionModel<T>* tmp = new BinaryExpressionModel<T>(ope,l,r);
+        memory.push_back(tmp);
+        return tmp;
     }
 
 }
