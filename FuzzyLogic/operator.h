@@ -22,6 +22,7 @@
 #include "fuzzy/ThenMult.h"
 
 #include "fuzzy/is.h"
+#include "fuzzy/isTriangle.h"
 
 
 #endif
