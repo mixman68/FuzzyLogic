@@ -5,4 +5,7 @@
 #include "core/UnaryExpressionModel.h"
 #include "core/ValueModel.h"
 
+#include "core/UnaryShadowExpression.h"
+#include "core/BinaryShadowExpression.h"
+
 #endif
