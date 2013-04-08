@@ -29,11 +29,9 @@ namespace core
     }
 
     template<class T>
-    BinaryExpressionModel<T>::BinaryExpressionModel(BinaryExpression<T>* _operateur,Expression<T>* _left,Expression<T>* _right)
+    BinaryExpressionModel<T>::BinaryExpressionModel(BinaryExpression<T>* _operateur,Expression<T>* _left,Expression<T>* _right):
+    left(_left), right(_right), operateur(_operateur)
     {
-        left=_left;
-        right=_right;
-        operateur=_operateur;
     }
 
     template<class T>

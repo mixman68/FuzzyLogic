@@ -27,10 +27,9 @@ namespace core
     }
 
     template<class T>
-    UnaryExpressionModel<T>::UnaryExpressionModel(UnaryExpression<T>* _operateur,Expression<T>* _operand)
+    UnaryExpressionModel<T>::UnaryExpressionModel(UnaryExpression<T>* _operateur,Expression<T>* _operand):
+    operand(_operand), operateur(_operateur)
     {
-        operand=_operand;
-        operateur=_operateur;
     }
 
     template<class T>

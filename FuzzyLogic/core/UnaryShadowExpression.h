@@ -34,7 +34,7 @@ namespace core
     };
     
     template<class T>
-    UnaryShadowExpression<T>::BinaryShadowExpression()
+    UnaryShadowExpression<T>::UnaryShadowExpression()
     {
     }
     

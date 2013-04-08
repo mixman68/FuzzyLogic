@@ -19,33 +19,30 @@ namespace core
     class BinaryShadowExpression : public BinaryExpression<T>
     {
     public:
-        BinaryShadowExpression();
-        BinaryShadowExpression(BinaryExpression<T>*,Expression<T>*,Expression<T>*);
-        /*virtual T Evaluate() const;
-         virtual T Evaluate(Expression<T>*,Expression<T>*) const;
-         virtual void SetOperareur(BinaryExpression<T>*);
-         virtual void SetLeft(Expression<T>*);
-         virtual void SetRight(Expression<T>*);*/
+        BinaryShadowExpression(BinaryExpression<T>*);
+        virtual T Evaluate(Expression<T>*,Expression<T>*) const;
+        virtual void SetTarget(BinaryExpression<T>*);
     protected:
     private:
-        /*BinaryExpression<T>* operateur;
-         Expression<T>* left;
-         Expression<T>* right;*/
+        BinaryExpression<T>* target;
     };
     
     template<class T>
-    BinaryShadowExpression<T>::BinaryShadowExpression()
+    BinaryShadowExpression<T>::BinaryShadowExpression(BinaryExpression<T>* _target): target(_target)
     {
     }
     
-    /*template<class T>
-     BinaryShadowExpression<T>::BinaryShadowExpression(BinaryExpression<T>* _operateur,Expression<T>* _left,Expression<T>* _right)
-     {
-     left=_left;
-     right=_right;
-     operateur=_operateur;
-     }*/
+    template<class T>
+    void BinaryShadowExpression<T>::SetTarget(BinaryExpression<T>* _target)
+    {
+        target = _target;
+    }
     
+    template<class T>
+    T BinaryShadowExpression<T>::Evaluate(Expression<T>* l,Expression<T>* r) const
+    {
+        return target->Evaluate(l, r);
+    }
 }
 
 #endif /* defined(__FuzzyLogic__BinaryShadowExpression__) */
