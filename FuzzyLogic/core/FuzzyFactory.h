@@ -5,6 +5,7 @@
 #include "ValueModel.h"
 #include "../operator.h"
 #include "../expr.h"
+#include "../fuzzy/And.h"
 
 
 
@@ -21,6 +22,8 @@ namespace core
              Expression<T>* NewDefuzz(Expression<T>*,Expression<T>*);
              Expression<T>* NewNot(Expression<T>*);
              Expression<T>* NewIs(fuzzy::is<T>*, Expression<T>*);
+
+             void changeAnd(fuzzy::And<T>*);
         protected:
         private:
             BinaryShadowExpression<T>* et,ou,then,agg,defuzz;
@@ -68,6 +71,12 @@ namespace core
     Expression<T>* FuzzyFactory<T>::NewIs(fuzzy::is<T>* is, Expression<T>* e)
     {
         return this->NewUnary(is,e);
+    }
+
+    template <class T>
+    void FuzzyFactory<T>::changeAnd(fuzzy::And<T>* o)
+    {
+        et->setTarget(o);
     }
 }
 
