@@ -3,6 +3,7 @@
 
 #include "../core/BinaryExpression.h"
 #include "../core/Expression.h"
+#include "../core/Shape.h"
 
 using namespace core;
 
@@ -12,17 +13,25 @@ namespace fuzzy
     class MamdaniDefuzz: public BinaryExpression<T>
     {
         public:
-            virtual T Evaluate(Expression<T>*,Expression<T>*) const;
+            MamdaniDefuzz();
+            MamdaniDefuzz(const T&,const T&,const T&);
+            virtual T Evaluate(Expression<T>*,Expression<T>*) const = 0;
         protected:
+            T mini, maxi, step;
         private:
     };
-    template <class T>
-    T MamdaniDefuzz<T>::Evaluate(Expression<T>* left,Expression<T>* right) const
-    {
-        T l = left->Evaluate();
-        T r = right->Evaluate();
 
-    }
+    template<class T>
+	MamdaniDefuzz<T>::MamdaniDefuzz():
+	mini(0),maxi(0),step(0)
+	{
+	}
+
+	template<class T>
+	MamdaniDefuzz<T>::MamdaniDefuzz(const T& _min, const T& _max, const T& _step):
+	mini(_min),maxi(_max),step(_step)
+	{
+	}
 
 }
 
