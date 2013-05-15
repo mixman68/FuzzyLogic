@@ -28,7 +28,7 @@ T CogDefuzz<T>::Evaluate(Expression<T>* left,Expression<T>* right) const
     for(T i = this->mini; i< this->maxi; i+=this->step)
     {
         num += s.getShape().second.at(i) * s.getShape().first.at(i);
-               dem += s.getShape().second.at(i);
+        dem += s.getShape().second.at(i);
     }
 
     //resultat

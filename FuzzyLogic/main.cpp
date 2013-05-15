@@ -64,6 +64,12 @@ void tests()
 	isTriangle<float>* istriangle = new isTriangle<float>(min,med,max);
 	cout << istriangle->Evaluate(vm1) << endl;
 
+	cout << "Fin des tests primitifs" << endl << endl;
+
+
+	//Poor
+
+
 
 
 }
