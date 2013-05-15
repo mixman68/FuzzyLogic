@@ -13,7 +13,7 @@ namespace core
             UnaryExpressionModel(UnaryExpression<T>*,Expression<T>*);
             virtual T Evaluate() const;
             virtual T Evaluate(Expression<T>*) const;
-            virtual void SetOperareur(UnaryExpression<T>*);
+            virtual void SetOperateur(UnaryExpression<T>*);
             virtual void SetOperand(Expression<T>*);
         protected:
         private:
@@ -49,7 +49,7 @@ namespace core
     }
 
     template<class T>
-    void UnaryExpressionModel<T>::SetOperareur(UnaryExpression<T>* _operateur)
+    void UnaryExpressionModel<T>::SetOperateur(UnaryExpression<T>* _operateur)
     {
         operateur=_operateur;
     }
