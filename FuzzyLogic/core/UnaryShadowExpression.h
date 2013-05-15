@@ -21,11 +21,6 @@ namespace core
     public:
         UnaryShadowExpression();
         UnaryShadowExpression(UnaryExpression<T>*,Expression<T>*,Expression<T>*);
-        /*virtual T Evaluate() const;
-         virtual T Evaluate(Expression<T>*,Expression<T>*) const;
-         virtual void SetOperareur(BinaryExpression<T>*);
-         virtual void SetLeft(Expression<T>*);
-         virtual void SetRight(Expression<T>*);*/
     protected:
     private:
         /*BinaryExpression<T>* operateur;
@@ -38,13 +33,6 @@ namespace core
     {
     }
     
-    /*template<class T>
-     BinaryShadowExpression<T>::BinaryShadowExpression(BinaryExpression<T>* _operateur,Expression<T>* _left,Expression<T>* _right)
-     {
-     left=_left;
-     right=_right;
-     operateur=_operateur;
-     }*/
     
 }
 
