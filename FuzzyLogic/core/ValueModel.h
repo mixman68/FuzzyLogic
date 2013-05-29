@@ -32,8 +32,6 @@ namespace core
     template<class T>
     T ValueModel<T>::Evaluate() const
     {
-        if(value==NULL)
-            throw (NullExpressionException("value missing"));
         return value;
     }
 

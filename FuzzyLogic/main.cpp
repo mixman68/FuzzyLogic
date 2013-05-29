@@ -202,7 +202,7 @@ void testExempleSimplifie()
 
     core::Expression<double> *defuzz = f.NewMamdani(&tips, res);
 
-    //cout << "Test exemple reultat :" << defuzz->Evaluate() << endl;
+    cout << "Test exemple reultat :" << defuzz->Evaluate() << endl;
 }
 
 int main()
@@ -210,6 +210,7 @@ int main()
     cout << "Hello world!" << endl;
     tests();
     testExempleSansFactory();
+    testExempleSimplifie();
     return 0;
 }
 
