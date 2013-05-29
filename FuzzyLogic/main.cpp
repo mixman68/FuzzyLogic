@@ -106,7 +106,7 @@ void testMandani()
 
 	//On cre la factory
 
-    //FuzzyFactory<double> f(&opNot,&opAnd,&opOr,&opThen,&opOr,&opDefuzz);
+    FuzzyFactory<double> f(&opNot,&opAnd,&opOr,&opAgg,&opThen,&opDefuzz);
 
 
 }
