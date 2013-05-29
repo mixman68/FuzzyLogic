@@ -20,13 +20,19 @@ namespace core
              Expression<T>* NewThen(Expression<T>*,Expression<T>*);
              Expression<T>* NewAgg(Expression<T>*,Expression<T>*);
              Expression<T>* NewDefuzz(Expression<T>*,Expression<T>*);
+             Expression<T>* NewMamdani(Expression<T>*,Expression<T>*);
              Expression<T>* NewNot(Expression<T>*);
              Expression<T>* NewIs(fuzzy::is<T>*, Expression<T>*);
 
              void changeAnd(fuzzy::And<T>*);
+             void changeOr(fuzzy::Or<T>*);
+             void changeThen(fuzzy::Then<T>*);
+             void changeAgg(fuzzy::Agg<T>*);
+             void changeMamdani(fuzzy::MamdaniDefuzz<T>*);
+             void changeNot(fuzzy::Not<T>*);
         protected:
         private:
-            BinaryShadowExpression<T>* et,ou,then,agg,defuzz;
+            BinaryShadowExpression<T>* et,ou,then,agg,defuzz,mamdani;
             UnaryShadowExpression<T>* non;
 
     };
@@ -63,6 +69,12 @@ namespace core
     }
 
     template <class T>
+    Expression<T>* FuzzyFactory<T>::NewMamdani(Expression<T>* l,Expression<T>* r)
+    {
+        return this->NewBinary(mamdani,l,r);
+    }
+
+    template <class T>
     Expression<T>* FuzzyFactory<T>::NewNot(Expression<T>* expr)
     {
         return this->NewUnary(non,expr);
@@ -74,11 +86,44 @@ namespace core
         return this->NewUnary(is,e);
     }
 
+    //CHANGE PART
+
     template <class T>
     void FuzzyFactory<T>::changeAnd(fuzzy::And<T>* o)
     {
         et->setTarget(o);
     }
+
+    template <class T>
+    void FuzzyFactory<T>::changeOr(fuzzy::Or<T>* o)
+    {
+        ou->setTarget(o);
+    }
+
+    template <class T>
+    void FuzzyFactory<T>::changeThen(fuzzy::Then<T>* o)
+    {
+        then->setTarget(o);
+    }
+
+    template <class T>
+    void FuzzyFactory<T>::changeAgg(fuzzy::Agg<T>* o)
+    {
+        agg->setTarget(o);
+    }
+
+    template <class T>
+    void FuzzyFactory<T>::changeMamdani(fuzzy::MamdaniDefuzz<T>* o)
+    {
+        mamdani->setTarget(o);
+    }
+
+    template <class T>
+    void FuzzyFactory<T>::changeNot(fuzzy::Not<T>* o)
+    {
+        non->setTarget(o);
+    }
+
 }
 
 #endif // FUZZYFACTORY_H

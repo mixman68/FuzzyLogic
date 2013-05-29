@@ -28,8 +28,8 @@ namespace core
 		for (T i=mini; i <= maxi; i+= step)
 		{
 		    x.push_back(i); // on stocke le x
-			value->setValue(i); // set de la valeur pour evaluer le y
-			T tmp = e->evaluate(); // on evalue le y
+			value->SetValue(i); // set de la valeur pour evaluer le y
+			T tmp = e->Evaluate(); // on evalue le y
 			y.push_back(tmp); // et on le stocke
 		}
         this->shape = ShapeVect(x,y);

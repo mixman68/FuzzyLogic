@@ -4,6 +4,9 @@
 
 #include "fuzzy/is.h"
 #include "fuzzy/isTriangle.h"
+#include "fuzzy/isGaussian.h"
+
+#include "core/FuzzyFactory.h"
 
 using namespace std;
 using namespace core;
@@ -71,18 +74,41 @@ void testMandani()
 {
         cout << "Mamdani defuzz" << endl;
 
-		//operators
-    NotMinus1<float> opNot;
-    AndMin<float> opAnd;
-    OrMax<float> opOr;
-    ThenMin<float> opThen;
-    AggMax<float> opAgg;
 
-    isTriangle<double> poor(-5.0,0.0,5.0);
-    isTriangle<double> good(0.0,5.0,10.0);
-    isTriangle<double> excellent(5.0,10.0,15.0);
-    isTriangle<double> rancid(-5.0,0.0,5.0);
-    isTriangle<double> delicious(5.0,10.0,15.0);
+
+//ai pas fzai les aure sdu coup toit est triangle
+
+    isTriangle<double> poor(-5.0,0.0,5.0);//gaussien
+    isTriangle<double> good(0.0,5.0,10.0);//gaussien
+    isTriangle<double> excellent(5.0,10.0,15.0);//gaussien
+    isTriangle<double> rancid(-5.0,0.0,5.0); //trapeze
+    isTriangle<double> delicious(5.0,10.0,15.0); // trapeze
+
+    isTriangle<double> average(10.0,15.0,20.0);
+	isTriangle<double> generous(20.0,25.0,30.0);
+	isTriangle<double> cheap(0.0,5.0,10.0);
+
+	//Definitin des operateurs !
+
+	NotMinus1<double> opNot;
+	AndMin<double> opAnd;
+	OrMax<double> opOr;
+	AggMax<double> opAgg;
+	ThenMin<double> opThen;
+	CogDefuzz<double> opDefuzz(0.0,30.0,1.0);
+
+
+	// HOp on coefficiente un peu
+
+	ValueModel<double> service(8.0);
+	ValueModel<double> food(2.0);
+	ValueModel<double> tips(0.0);
+
+	//On cre la factory
+
+    //FuzzyFactory<double> f(&opNot,&opAnd,&opOr,&opThen,&opOr,&opDefuzz);
+
+
 }
 
 int main()

@@ -8,9 +8,10 @@ using namespace core;
 namespace fuzzy
 {
 template <class T>
-class CogDefuzz: MamdaniDefuzz<T>
+class CogDefuzz: public MamdaniDefuzz<T>
 {
 public:
+    CogDefuzz(const T&,const T&,const T&);
     virtual T Evaluate(Expression<T>*,Expression<T>*) const;
 protected:
 private:
@@ -36,6 +37,12 @@ T CogDefuzz<T>::Evaluate(Expression<T>* left,Expression<T>* right) const
 
     return res;
 }
+
+template <class T>
+CogDefuzz<T>::CogDefuzz(const T& _min, const T& _max, const T& _step):
+	MamdaniDefuzz<T>(_min,_max,_step)
+	{
+	}
 
 }
 

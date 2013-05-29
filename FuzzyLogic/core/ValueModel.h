@@ -10,7 +10,7 @@ namespace core
     {
         public:
             ValueModel();
-            ValueModel(T&);
+            ValueModel(T);
             virtual T Evaluate() const;
             void SetValue(T&);
         protected:
@@ -24,7 +24,7 @@ namespace core
     }
 
     template<class T>
-    ValueModel<T>::ValueModel(T& _value):
+    ValueModel<T>::ValueModel(T _value):
     value(_value)
     {
     }

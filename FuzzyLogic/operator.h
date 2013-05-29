@@ -24,6 +24,8 @@
 #include "fuzzy/is.h"
 #include "fuzzy/isTriangle.h"
 
+#include "fuzzy/CogDefuzz.h"
+
 
 #endif
 
