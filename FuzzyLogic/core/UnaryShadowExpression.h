@@ -20,20 +20,38 @@ namespace core
     {
     public:
         UnaryShadowExpression();
-        UnaryShadowExpression(UnaryExpression<T>*,Expression<T>*,Expression<T>*);
+        UnaryShadowExpression(UnaryExpression<T>*);
+        virtual T Evaluate(Expression<T>*) const;
+        virtual void SetTarget(UnaryExpression<T>*);
     protected:
     private:
-        /*BinaryExpression<T>* operateur;
-         Expression<T>* left;
-         Expression<T>* right;*/
+        UnaryExpression<T>* target;
     };
-    
+
     template<class T>
     UnaryShadowExpression<T>::UnaryShadowExpression()
     {
     }
-    
-    
+
+    template<class T>
+    UnaryShadowExpression<T>::UnaryShadowExpression(UnaryExpression<T>* _target):target(_target)
+    {
+
+    }
+
+    template<class T>
+    void UnaryShadowExpression<T>::SetTarget(UnaryExpression<T>* _target)
+    {
+        target = _target;
+    }
+
+    template<class T>
+    T UnaryShadowExpression<T>::Evaluate(Expression<T>* l) const
+    {
+        return target->Evaluate(l);
+    }
+
+
 }
 
 #endif /* defined(__FuzzyLogic__UnaryShadowExpression__) */
