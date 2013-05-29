@@ -59,43 +59,43 @@ FuzzyFactory<T>::FuzzyFactory(fuzzy::Not<T>* _non,
 template <class T>
 Expression<T>* FuzzyFactory<T>::NewAnd(Expression<T>* l,Expression<T>* r)
 {
-    return this->NewBinary(et,l,r);
+    return this->NewBinary(&et,l,r);
 }
 
 template <class T>
 Expression<T>* FuzzyFactory<T>::NewOr(Expression<T>* l,Expression<T>* r)
 {
-    return this->NewBinary(ou,l,r);
+    return this->NewBinary(&ou,l,r);
 }
 
 template <class T>
 Expression<T>* FuzzyFactory<T>::NewThen(Expression<T>* l,Expression<T>* r)
 {
-    return this->NewBinary(then,l,r);
+    return this->NewBinary(&then,l,r);
 }
 
 template <class T>
 Expression<T>* FuzzyFactory<T>::NewAgg(Expression<T>* l,Expression<T>* r)
 {
-    return this->NewBinary(agg,l,r);
+    return this->NewBinary(&agg,l,r);
 }
 
 template <class T>
 Expression<T>* FuzzyFactory<T>::NewDefuzz(Expression<T>* l,Expression<T>* r)
 {
-    return this->NewBinary(defuzz,l,r);
+    return this->NewBinary(&defuzz,l,r);
 }
 
 template <class T>
 Expression<T>* FuzzyFactory<T>::NewMamdani(Expression<T>* l,Expression<T>* r)
 {
-    return this->NewBinary(mamdani,l,r);
+    return this->NewBinary(&mamdani,l,r);
 }
 
 template <class T>
 Expression<T>* FuzzyFactory<T>::NewNot(Expression<T>* expr)
 {
-    return this->NewUnary(non,expr);
+    return this->NewUnary(&non,expr);
 }
 
 template <class T>

@@ -70,7 +70,7 @@ void tests()
 	cout << "Fin des tests primitifs" << endl << endl;
 }
 
-void testMandani()
+void testExempleSimplifie()
 {
         cout << "Mamdani defuzz" << endl;
 
@@ -108,13 +108,35 @@ void testMandani()
 
     FuzzyFactory<double> f(&opNot,&opAnd,&opOr,&opAgg,&opThen,&opDefuzz);
 
+    //Calcul
+    core::Expression<double> *res =
+    f.NewAgg(
+        f.NewAgg(
+            f.NewThen(
+                f.NewIs(&poor,&service),
+                f.NewIs(&cheap,&tips)
+            ),
+            f.NewThen(
+                f.NewIs(&good,&service),
+                f.NewIs(&average,&tips)
+            )
+        ),
+        f.NewThen(
+            f.NewIs(&excellent,&service),
+            f.NewIs(&generous,&tips)
+        )
+    );
 
+    core::Expression<double> *defuzz = f.NewMamdani(&tips, res);
+
+    cout << "Test exemple reultat :" << defuzz->Evaluate() << endl;
 }
 
 int main()
 {
     cout << "Hello world!" << endl;
     tests();
+    testExempleSimplifie();
     return 0;
 }
 

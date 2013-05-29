@@ -6,7 +6,7 @@
 namespace core
 {
     template <class T>
-    class UnaryExpressionModel: public UnaryExpression<T>,Expression<T>
+    class UnaryExpressionModel: public UnaryExpression<T>,public Expression<T>
     {
         public:
             UnaryExpressionModel();
