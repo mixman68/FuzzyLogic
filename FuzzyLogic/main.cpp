@@ -72,68 +72,61 @@ void tests()
 
 void testExempleSansFactory(){
     cout << "Mamdani defuzz sans factory" << endl;
-    
-    
-    
+
+
+
     //ai pas fzai les aure sdu coup toit est triangle
-    
+
     isTriangle<double> poor(-5.0,0.0,5.0);//gaussien
     isTriangle<double> good(0.0,5.0,10.0);//gaussien
     isTriangle<double> excellent(5.0,10.0,15.0);//gaussien
     isTriangle<double> rancid(-5.0,0.0,5.0); //trapeze
     isTriangle<double> delicious(5.0,10.0,15.0); // trapeze
-    
+
     isTriangle<double> average(10.0,15.0,20.0);
 	isTriangle<double> generous(20.0,25.0,30.0);
 	isTriangle<double> cheap(0.0,5.0,10.0);
-    
+
 	//Definitin des operateurs !
-    
+
 	NotMinus1<double> opNot;
 	AndMin<double> opAnd;
 	OrMax<double> opOr;
 	AggMax<double> opAgg;
 	ThenMin<double> opThen;
 	CogDefuzz<double> opDefuzz(0.0,30.0,1.0);
-    
-    
+
+
 	// HOp on coefficiente un peu
-    
+
 	ValueModel<double> service(8.0);
 	ValueModel<double> food(2.0);
 	ValueModel<double> tips(1.0);
-    
+
     UnaryExpressionModel<double> ps(&poor, &service);
     UnaryExpressionModel<double> ct(&cheap, &tips);
     BinaryExpressionModel<double> regle1 (&opThen, &ps, &ct);
-    
-    cout << regle1.Evaluate();
-    
+
     UnaryExpressionModel<double> gs (&good, &service);
     UnaryExpressionModel<double> at (&average, &tips);
     BinaryExpressionModel<double> regle2 (&opThen, &gs, &at);
-    
-    cout << regle2.Evaluate();
-    
+
+
     BinaryExpressionModel<double> sortie1 (&opAgg, &regle1, &regle2);
-    
-    cout << sortie1.Evaluate();
-    
+
     UnaryExpressionModel<double> es (&excellent, &service);
     UnaryExpressionModel<double> gt (&generous, &tips);
     BinaryExpressionModel<double> regle3 (&opThen, &es, &gt);
-    
-    cout << regle3.Evaluate();
-    
-    
+
+
+
     BinaryExpressionModel<double> sortieGene (&opAgg, &sortie1, &regle3);
-    
-    sortieGene.Evaluate();
-    
-    
+
+
+
     BinaryExpressionModel<double> defuzz (&opDefuzz, &tips, &sortieGene);
-    cout << "tttttttt :" << defuzz.Evaluate() << endl;
-    
+    cout << "Mamdani defuzz, sans factory :" << defuzz.Evaluate() << endl;
+
 }
 
 
@@ -193,8 +186,8 @@ void testExempleSimplifie()
             f.NewIs(&generous,&tips)
         )
     );
-    
-    
+
+
     cout << f.NewThen(
                       f.NewIs(&poor,&service),
                       f.NewIs(&cheap,&tips)
@@ -203,6 +196,11 @@ void testExempleSimplifie()
     core::Expression<double> *defuzz = f.NewMamdani(&tips, res);
 
     cout << "Test exemple reultat :" << defuzz->Evaluate() << endl;
+}
+
+int testExempleSugeno()
+{
+
 }
 
 int main()
