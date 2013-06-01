@@ -17,7 +17,7 @@ namespace core
         virtual void SetTarget(NaryExpression<T>*);
     protected:
     private:
-        NaryShadowExpression<T>* target;
+        NaryExpression<T>* target;
     };
 
     template<class T>

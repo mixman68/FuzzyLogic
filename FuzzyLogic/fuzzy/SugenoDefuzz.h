@@ -7,7 +7,6 @@
 #include "SugenoThen.h"
 
 using namespace core;
-using namespace std;
 
 namespace fuzzy
 {
@@ -15,16 +14,16 @@ template <class T>
 class SugenoDefuzz: public NaryExpression<T>
 {
 public:
-    SugenoDefuzz();
-    virtual T Evaluate(vector<const Expression<T>*>*) const;
+    SugenoDefuzz(){};
+    virtual T Evaluate(std::vector<Expression<T>*>*) const;
 protected:
 private:
 };
 
 template <class T>
-T SugenoDefuzz<T>::Evaluate(vector<const Expression<T>*>* operands) const
+T SugenoDefuzz<T>::Evaluate(std::vector<Expression<T>*>* operands) const
 {
-    typename vector<const Expression<T>*>::const_iterator oItr ;
+    typename std::vector<Expression<T>*>::const_iterator oItr ;
     T num = 0;
     T denum = 0;
 

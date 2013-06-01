@@ -14,9 +14,9 @@ class SugenoConclusion: public core::NaryExpression<T>
 public:
     SugenoConclusion();
     SugenoConclusion(const vector<T>*);
-    virtual ~SugenoConclusion();
+    virtual ~SugenoConclusion(){};
 
-    virtual T Evaluate(vector<const core::Expression<T>*>*) const;
+    virtual T Evaluate(std::vector<core::Expression<T>*>*) const;
 
 protected:
 private:
@@ -30,14 +30,14 @@ SugenoConclusion<T>::SugenoConclusion(const vector<T>* _coefs):
 }
 
 template<class T>
-T SugenoConclusion <T>::Evaluate(vector<const core::Expression<T>*> *operands) const
+T SugenoConclusion <T>::Evaluate(vector<core::Expression<T>*> *operands) const
 {
     if(operands->size()!=coefs->size())
         throw(new SugenoException("Invalid size !"));
 
     //Creation des itératurs
     typename vector<T>::const_iterator cItr;
-    typename vector<const core::Expression<T>*>::const_iterator oItr;
+    typename vector<core::Expression<T>*>::const_iterator oItr;
 
     T tmp = 0;
 

@@ -22,31 +22,38 @@ namespace core
         BinaryShadowExpression(BinaryExpression<T>*);
         virtual T Evaluate(Expression<T>*,Expression<T>*) const;
         virtual void SetTarget(BinaryExpression<T>*);
+        virtual BinaryExpression<T>* GetTarget() const;
     protected:
     private:
         BinaryExpression<T>* target;
     };
-    
+
     template<class T>
     BinaryShadowExpression<T>::BinaryShadowExpression(BinaryExpression<T>* _target): target(_target)
     {
     }
-    
+
     template<class T>
     BinaryShadowExpression<T>::BinaryShadowExpression()
     {
     }
-    
+
     template<class T>
     void BinaryShadowExpression<T>::SetTarget(BinaryExpression<T>* _target)
     {
         target = _target;
     }
-    
+
     template<class T>
     T BinaryShadowExpression<T>::Evaluate(Expression<T>* l,Expression<T>* r) const
     {
         return target->Evaluate(l, r);
+    }
+
+    template<class T>
+    BinaryExpression<T>* BinaryShadowExpression<T>::GetTarget() const
+    {
+        return target;
     }
 }
 

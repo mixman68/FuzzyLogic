@@ -7,5 +7,6 @@
 
 #include "core/UnaryShadowExpression.h"
 #include "core/BinaryShadowExpression.h"
+#include "core/NaryShadowExpression.h"
 
 #endif

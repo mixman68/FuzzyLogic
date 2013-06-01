@@ -10,13 +10,13 @@
 
 
 
-namespace core
+namespace fuzzy
 {
 template <class T>
 class FuzzyFactory: public ExpressionFactory<T>
 {
 public:
-    FuzzyFactory(fuzzy::Not<T>*,fuzzy::And<T>*,fuzzy::Or<T>*,fuzzy::Agg<T>*,fuzzy::Then<T>*,fuzzy::MamdaniDefuzz<T>*);
+    FuzzyFactory(fuzzy::Not<T>*,fuzzy::And<T>*,fuzzy::Or<T>*,fuzzy::Agg<T>*,fuzzy::Then<T>*,fuzzy::MamdaniDefuzz<T>*,fuzzy::SugenoDefuzz<T>*,fuzzy::SugenoConclusion<T>*);
     Expression<T>* NewAnd(Expression<T>*,Expression<T>*);
     Expression<T>* NewOr(Expression<T>*,Expression<T>*);
     Expression<T>* NewThen(Expression<T>*,Expression<T>*);
@@ -26,16 +26,19 @@ public:
     Expression<T>* NewNot(Expression<T>*);
     Expression<T>* NewIs(fuzzy::is<T>*, Expression<T>*);
 
-    void changeAnd(fuzzy::And<T>*);
-    void changeOr(fuzzy::Or<T>*);
-    void changeThen(fuzzy::Then<T>*);
-    void changeAgg(fuzzy::Agg<T>*);
-    void changeMamdani(fuzzy::MamdaniDefuzz<T>*);
-    void changeNot(fuzzy::Not<T>*);
+    void ChangeAnd(fuzzy::And<T>*);
+    void ChangeOr(fuzzy::Or<T>*);
+    void ChangeThen(fuzzy::Then<T>*);
+    void ChangeAgg(fuzzy::Agg<T>*);
+    void ChangeMamdani(fuzzy::MamdaniDefuzz<T>*);
+    void ChangeNot(fuzzy::Not<T>*);
+    void ChangeSugeno(fuzzy::SugenoDefuzz<T>* o);
+	void ChangeConclusion(fuzzy::SugenoConclusion<T>* o);
 protected:
 private:
     BinaryShadowExpression<T> et,ou,then,agg,defuzz,mamdani;
     UnaryShadowExpression<T>* non;
+    NaryShadowExpression<T> sugeno,conclusion;
 
 };
 
@@ -45,13 +48,17 @@ FuzzyFactory<T>::FuzzyFactory(fuzzy::Not<T>* _non,
                               fuzzy::Or<T>* _ou,
                               fuzzy::Agg<T>* _agg,
                               fuzzy::Then<T>* _then,
-                              fuzzy::MamdaniDefuzz<T>* _mamdani):
+                              fuzzy::MamdaniDefuzz<T>* _mamdani,
+                              fuzzy::SugenoDefuzz<T>* _sugeno,
+                              fuzzy::SugenoConclusion<T>* _conclusion):
     non(new core::UnaryShadowExpression<T>(_non)),
     ou(new core::BinaryShadowExpression<T>(_et)),
     et(new core::BinaryShadowExpression<T>(_ou)),
     agg(new core::BinaryShadowExpression<T>(_agg)),
     then(new core::BinaryShadowExpression<T>(_then)),
-    mamdani(new core::BinaryShadowExpression<T>(_mamdani))
+    mamdani(new core::BinaryShadowExpression<T>(_mamdani)),
+    sugeno(new core::NaryShadowExpression<T>(_sugeno)),
+    conclusion(new core::NaryShadowExpression<T>(_conclusion))
 {
 }
 
@@ -104,43 +111,55 @@ Expression<T>* FuzzyFactory<T>::NewIs(fuzzy::is<T>* is, Expression<T>* e)
     return this->NewUnary(is,e);
 }
 
-//CHANGE PART
+//Change PART
 
 template <class T>
-void FuzzyFactory<T>::changeAnd(fuzzy::And<T>* o)
+void FuzzyFactory<T>::ChangeAnd(fuzzy::And<T>* o)
 {
     et.SetTarget(o);
 }
 
 template <class T>
-void FuzzyFactory<T>::changeOr(fuzzy::Or<T>* o)
+void FuzzyFactory<T>::ChangeOr(fuzzy::Or<T>* o)
 {
     ou.SetTarget(o);
 }
 
 template <class T>
-void FuzzyFactory<T>::changeThen(fuzzy::Then<T>* o)
+void FuzzyFactory<T>::ChangeThen(fuzzy::Then<T>* o)
 {
     then.SetTarget(o);
 }
 
 template <class T>
-void FuzzyFactory<T>::changeAgg(fuzzy::Agg<T>* o)
+void FuzzyFactory<T>::ChangeAgg(fuzzy::Agg<T>* o)
 {
     agg.SetTarget(o);
 }
 
 template <class T>
-void FuzzyFactory<T>::changeMamdani(fuzzy::MamdaniDefuzz<T>* o)
+void FuzzyFactory<T>::ChangeMamdani(fuzzy::MamdaniDefuzz<T>* o)
 {
     mamdani.SetTarget(o);
 }
 
 template <class T>
-void FuzzyFactory<T>::changeNot(fuzzy::Not<T>* o)
+void FuzzyFactory<T>::ChangeNot(fuzzy::Not<T>* o)
 {
     non.SetTarget(o);
 }
+
+	template<class T>
+	void FuzzyFactory<T>::ChangeSugeno(SugenoDefuzz<T>* o)
+	{
+		sugeno.SetTarget(o);
+	}
+
+	template<class T>
+	void FuzzyFactory<T>::ChangeConclusion(SugenoConclusion<T>* o)
+	{
+		conclusion.SetTarget(o);
+	}
 
 }
 
