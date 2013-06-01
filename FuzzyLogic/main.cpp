@@ -25,52 +25,53 @@ void tests()
 
     AndMin<float>* andmin = new AndMin<float>();
     BinaryExpressionModel<float> a(andmin, vm1, vm2);
-	cout << a.Evaluate() << endl;
+    cout << a.Evaluate() << endl;
 
-	AndMult<float>* andmult = new AndMult<float>();
+    AndMult<float>* andmult = new AndMult<float>();
     BinaryExpressionModel<float> b(andmult, vm1, vm2);
-	cout << b.Evaluate() << endl;
+    cout << b.Evaluate() << endl;
 
-	AggMax<float>* aggmax = new AggMax<float>();
+    AggMax<float>* aggmax = new AggMax<float>();
     BinaryExpressionModel<float> c(aggmax, vm1, vm2);
-	cout << c.Evaluate() << endl;
+    cout << c.Evaluate() << endl;
 
-	AggPlus<float>* aggplus = new AggPlus<float>();
+    AggPlus<float>* aggplus = new AggPlus<float>();
     BinaryExpressionModel<float> d(aggplus, vm1, vm2);
-	cout << d.Evaluate() << endl;
+    cout << d.Evaluate() << endl;
 
-	NotMinus1<float>* notminus1 = new NotMinus1<float>();
+    NotMinus1<float>* notminus1 = new NotMinus1<float>();
     UnaryExpressionModel<float> e(notminus1, vm1);
-	cout << e.Evaluate() << endl;
+    cout << e.Evaluate() << endl;
 
-	OrMax<float>* ormax = new OrMax<float>();
+    OrMax<float>* ormax = new OrMax<float>();
     BinaryExpressionModel<float> f(ormax, vm1, vm2);
-	cout << f.Evaluate() << endl;
+    cout << f.Evaluate() << endl;
 
-	OrPlus<float>* orplus = new OrPlus<float>();
+    OrPlus<float>* orplus = new OrPlus<float>();
     BinaryExpressionModel<float> g(orplus, vm1, vm2);
-	cout << g.Evaluate() << endl;
+    cout << g.Evaluate() << endl;
 
     ThenMin<float>* thenmin = new ThenMin<float>();
     BinaryExpressionModel<float> h(thenmin, vm1, vm2);
-	cout << h.Evaluate() << endl;
+    cout << h.Evaluate() << endl;
 
-	ThenMult<float>* thenplus = new ThenMult<float>();
+    ThenMult<float>* thenplus = new ThenMult<float>();
     BinaryExpressionModel<float> i(thenplus, vm1, vm2);
-	cout << i.Evaluate() << endl;
+    cout << i.Evaluate() << endl;
 
-	float min,med,max;
-	min = 0;
-	med = 0.5;
-	max = 1;
+    float min,med,max;
+    min = 0;
+    med = 0.5;
+    max = 1;
 
-	isTriangle<float>* istriangle = new isTriangle<float>(min,med,max);
-	cout << istriangle->Evaluate(vm1) << endl;
+    isTriangle<float>* istriangle = new isTriangle<float>(min,med,max);
+    cout << istriangle->Evaluate(vm1) << endl;
 
-	cout << "Fin des tests primitifs" << endl << endl;
+    cout << "Fin des tests primitifs" << endl << endl;
 }
 
-void testExempleSansFactory(){
+void testExempleSansFactory()
+{
     cout << "Mamdani defuzz sans factory" << endl;
 
 
@@ -84,24 +85,24 @@ void testExempleSansFactory(){
     isTriangle<double> delicious(5.0,10.0,15.0); // trapeze
 
     isTriangle<double> average(10.0,15.0,20.0);
-	isTriangle<double> generous(20.0,25.0,30.0);
-	isTriangle<double> cheap(0.0,5.0,10.0);
+    isTriangle<double> generous(20.0,25.0,30.0);
+    isTriangle<double> cheap(0.0,5.0,10.0);
 
-	//Definitin des operateurs !
+    //Definitin des operateurs !
 
-	NotMinus1<double> opNot;
-	AndMin<double> opAnd;
-	OrMax<double> opOr;
-	AggMax<double> opAgg;
-	ThenMin<double> opThen;
-	CogDefuzz<double> opDefuzz(0.0,30.0,1.0);
+    NotMinus1<double> opNot;
+    AndMin<double> opAnd;
+    OrMax<double> opOr;
+    AggMax<double> opAgg;
+    ThenMin<double> opThen;
+    CogDefuzz<double> opDefuzz(0.0,30.0,1.0);
 
 
-	// HOp on coefficiente un peu
+    // HOp on coefficiente un peu
 
-	ValueModel<double> service(8.0);
-	ValueModel<double> food(2.0);
-	ValueModel<double> tips(1.0);
+    ValueModel<double> service(8.0);
+    ValueModel<double> food(2.0);
+    ValueModel<double> tips(1.0);
 
     UnaryExpressionModel<double> ps(&poor, &service);
     UnaryExpressionModel<double> ct(&cheap, &tips);
@@ -132,7 +133,7 @@ void testExempleSansFactory(){
 
 void testExempleSimplifie()
 {
-        cout << "Mamdani defuzz" << endl;
+    cout << "Mamdani defuzz" << endl;
 
 
 
@@ -145,64 +146,120 @@ void testExempleSimplifie()
     isTriangle<double> delicious(5.0,10.0,15.0); // trapeze
 
     isTriangle<double> average(10.0,15.0,20.0);
-	isTriangle<double> generous(20.0,25.0,30.0);
-	isTriangle<double> cheap(0.0,5.0,10.0);
+    isTriangle<double> generous(20.0,25.0,30.0);
+    isTriangle<double> cheap(0.0,5.0,10.0);
 
-	//Definitin des operateurs !
+    //Definitin des operateurs !
 
-	NotMinus1<double> opNot;
-	AndMin<double> opAnd;
-	OrMax<double> opOr;
-	AggMax<double> opAgg;
-	ThenMin<double> opThen;
-	CogDefuzz<double> opDefuzz(0.0,30.0,1.0);
+    NotMinus1<double> opNot;
+    AndMin<double> opAnd;
+    OrMax<double> opOr;
+    AggMax<double> opAgg;
+    ThenMin<double> opThen;
+    CogDefuzz<double> opDefuzz(0.0,30.0,1.0);
+    SugenoDefuzz<double> opSugeno;
+
+    vector<double> coefs;
+    coefs.push_back(1); //Coef service
+    coefs.push_back(1); //Coef food
+    SugenoConclusion<double> opConclusion (&coefs);
 
 
-	// HOp on coefficiente un peu
+    // HOp on coefficiente un peu
 
-	ValueModel<double> service(8.0);
-	ValueModel<double> food(2.0);
-	ValueModel<double> tips(1.0);
+    ValueModel<double> service(8.0);
+    ValueModel<double> food(2.0);
+    ValueModel<double> tips(1.0);
 
-	//On cre la factory
+    //On cre la factory
 
-    FuzzyFactory<double> f(&opNot,&opAnd,&opOr,&opAgg,&opThen,&opDefuzz);
+    FuzzyFactory<double> f(&opNot,&opAnd,&opOr,&opAgg,&opThen,&opDefuzz, &opSugeno, &opConclusion);
 
     //Calcul
     core::Expression<double> *res =
-    f.NewAgg(
         f.NewAgg(
-            f.NewThen(
-                f.NewIs(&poor,&service),
-                f.NewIs(&cheap,&tips)
+            f.NewAgg(
+                f.NewThen(
+                    f.NewIs(&poor,&service),
+                    f.NewIs(&cheap,&tips)
+                ),
+                f.NewThen(
+                    f.NewIs(&good,&service),
+                    f.NewIs(&average,&tips)
+                )
             ),
             f.NewThen(
-                f.NewIs(&good,&service),
-                f.NewIs(&average,&tips)
+                f.NewIs(&excellent,&service),
+                f.NewIs(&generous,&tips)
             )
-        ),
-        f.NewThen(
-            f.NewIs(&excellent,&service),
-            f.NewIs(&generous,&tips)
-        )
-    );
+        );
 
 
     cout << f.NewThen(
-                      f.NewIs(&poor,&service),
-                      f.NewIs(&cheap,&tips)
-                      )->Evaluate() << endl;
+             f.NewIs(&poor,&service),
+             f.NewIs(&cheap,&tips)
+         )->Evaluate() << endl;
 
     core::Expression<double> *defuzz = f.NewMamdani(&tips, res);
 
-    cout << "Test exemple reultat :" << defuzz->Evaluate() << endl;
-}
+    cout << "Test exemple reultat Mamdani :" << defuzz->Evaluate() << endl;
 
-int testExempleSugeno()
+    cout << "Sugeno defuzz" << endl;
+
+
+    //Sugeno
+
+    //on mets les deux combi possible
+    vector<core::Expression<double>* > sf;
+    sf.push_back(&service);
+    sf.push_back(&food);
+    vector<core::Expression<double>* > s;
+    s.push_back(&service);
+
+    fuzzy::SugenoThen<double> opThenSugeno;
+    f.ChangeThen(&opThenSugeno);
+
+    std::vector<core::Expression<double>*> regles;
+
+    regles.push_back(
+        f.NewThen(
+            f.NewOr(
+                f.NewIs(&poor,&service),
+                f.NewIs(&rancid,&food)
+            ),
+            f.NewConclusion(&sf)
+        )
+    );
+
+    regles.push_back(
+        f.NewThen(
+            f.NewIs(&good,&service),
+            f.NewConclusion(&s)
+        )
+    );
+
+    regles.push_back(
+        f.NewThen(
+            f.NewOr(
+                f.NewIs(&excellent,&service),
+                f.NewIs(&delicious,&food)
+            ),
+            f.NewConclusion(&sf)
+        )
+    );
+
+    //Dfuzz
+
+    Expression<double> *res2 = f.NewSugeno(&regles);
+
+try{
+    cout << "Sugeno :" << res2->Evaluate() << endl;
+} catch(SugenoException* ex)
 {
-
+    ex->PrintOn(cerr) << endl;
 }
 
+}
 int main()
 {
     cout << "Hello world!" << endl;

@@ -25,6 +25,8 @@ public:
     Expression<T>* NewMamdani(Expression<T>*,Expression<T>*);
     Expression<T>* NewNot(Expression<T>*);
     Expression<T>* NewIs(fuzzy::is<T>*, Expression<T>*);
+    Expression<T>* NewSugeno(std::vector<Expression<T>*>*);
+    Expression<T>* NewConclusion(std::vector<Expression<T>*>*);
 
     void ChangeAnd(fuzzy::And<T>*);
     void ChangeOr(fuzzy::Or<T>*);
@@ -33,7 +35,7 @@ public:
     void ChangeMamdani(fuzzy::MamdaniDefuzz<T>*);
     void ChangeNot(fuzzy::Not<T>*);
     void ChangeSugeno(fuzzy::SugenoDefuzz<T>* o);
-	void ChangeConclusion(fuzzy::SugenoConclusion<T>* o);
+    void ChangeConclusion(fuzzy::SugenoConclusion<T>* o);
 protected:
 private:
     BinaryShadowExpression<T> et,ou,then,agg,defuzz,mamdani;
@@ -111,6 +113,18 @@ Expression<T>* FuzzyFactory<T>::NewIs(fuzzy::is<T>* is, Expression<T>* e)
     return this->NewUnary(is,e);
 }
 
+template<class T>
+Expression<T>* FuzzyFactory<T>::NewSugeno(std::vector<Expression<T>*> *operands)
+{
+    return this->NewNary(&sugeno,operands);
+}
+
+template<class T>
+Expression<T>* FuzzyFactory<T>::NewConclusion(std::vector<Expression<T>*> *operands)
+{
+    return this->NewNary(&conclusion,operands);
+}
+
 //Change PART
 
 template <class T>
@@ -149,17 +163,17 @@ void FuzzyFactory<T>::ChangeNot(fuzzy::Not<T>* o)
     non.SetTarget(o);
 }
 
-	template<class T>
-	void FuzzyFactory<T>::ChangeSugeno(SugenoDefuzz<T>* o)
-	{
-		sugeno.SetTarget(o);
-	}
+template<class T>
+void FuzzyFactory<T>::ChangeSugeno(SugenoDefuzz<T>* o)
+{
+    sugeno.SetTarget(o);
+}
 
-	template<class T>
-	void FuzzyFactory<T>::ChangeConclusion(SugenoConclusion<T>* o)
-	{
-		conclusion.SetTarget(o);
-	}
+template<class T>
+void FuzzyFactory<T>::ChangeConclusion(SugenoConclusion<T>* o)
+{
+    conclusion.SetTarget(o);
+}
 
 }
 
