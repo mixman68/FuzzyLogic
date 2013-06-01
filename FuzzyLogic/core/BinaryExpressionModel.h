@@ -14,6 +14,7 @@ namespace core
             virtual T Evaluate() const;
             virtual T Evaluate(Expression<T>*,Expression<T>*) const;
             virtual void SetOperareur(BinaryExpression<T>*);
+            virtual BinaryExpression<T>* GetOperateur() const;
             virtual void SetLeft(Expression<T>*);
             virtual void SetRight(Expression<T>*);
         protected:
@@ -57,6 +58,11 @@ namespace core
     void BinaryExpressionModel<T>::SetOperareur(BinaryExpression<T>* _operateur)
     {
         operateur=_operateur;
+    }
+
+    template<class T>
+    BinaryExpression<T>* BinaryExpressionModel<T>::GetOperateur() const{
+        return operateur;
     }
 
     template<class T>
