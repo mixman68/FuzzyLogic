@@ -1,6 +1,7 @@
 #ifndef SUGENOEXCEPTION_H
 #define SUGENOEXCEPTION_H
 
+#include <iostream>
 
 class SugenoException
 {
