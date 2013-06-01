@@ -34,8 +34,8 @@ T SugenoThen<T>::GetPremiseValue() const
 template<class T>
 T SugenoThen<T>::Evaluate(core::Expression<T>* left, core::Expression<T>* right) const
 {
-    premiseValue = left->evaluate();
-    T tmp = premiseValue * right->evaluate();
+    premiseValue = left->Evaluate();
+    T tmp = premiseValue * right->Evaluate();
 
     return tmp;
 }

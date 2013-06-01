@@ -26,6 +26,10 @@
 
 #include "fuzzy/CogDefuzz.h"
 
+#include "fuzzy/SugenoDefuzz.h"
+#include "fuzzy/SugenoThen.h"
+#include "fuzzy/SugenoConclusion.h"
+
 
 #endif
 

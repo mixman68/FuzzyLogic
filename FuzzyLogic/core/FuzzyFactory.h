@@ -34,7 +34,7 @@ public:
     void changeNot(fuzzy::Not<T>*);
 protected:
 private:
-    BinaryShadowExpression<T>* et,ou,then,agg,defuzz,mamdani;
+    BinaryShadowExpression<T> et,ou,then,agg,defuzz,mamdani;
     UnaryShadowExpression<T>* non;
 
 };
@@ -109,37 +109,37 @@ Expression<T>* FuzzyFactory<T>::NewIs(fuzzy::is<T>* is, Expression<T>* e)
 template <class T>
 void FuzzyFactory<T>::changeAnd(fuzzy::And<T>* o)
 {
-    et->setTarget(o);
+    et.SetTarget(o);
 }
 
 template <class T>
 void FuzzyFactory<T>::changeOr(fuzzy::Or<T>* o)
 {
-    ou->setTarget(o);
+    ou.SetTarget(o);
 }
 
 template <class T>
 void FuzzyFactory<T>::changeThen(fuzzy::Then<T>* o)
 {
-    then->setTarget(o);
+    then.SetTarget(o);
 }
 
 template <class T>
 void FuzzyFactory<T>::changeAgg(fuzzy::Agg<T>* o)
 {
-    agg->setTarget(o);
+    agg.SetTarget(o);
 }
 
 template <class T>
 void FuzzyFactory<T>::changeMamdani(fuzzy::MamdaniDefuzz<T>* o)
 {
-    mamdani->setTarget(o);
+    mamdani.SetTarget(o);
 }
 
 template <class T>
 void FuzzyFactory<T>::changeNot(fuzzy::Not<T>* o)
 {
-    non->setTarget(o);
+    non.SetTarget(o);
 }
 
 }
