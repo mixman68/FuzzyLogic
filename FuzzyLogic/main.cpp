@@ -333,26 +333,27 @@ void testSystemeReel()
 
     cout << "Mode sugeno" << endl;
     fuzzy::SugenoThen<double> opThenSugeno;
-    f.ChangeThen(&opThenSugeno);
+    f.ChangeThen(&opThenSugeno); //On redéfini THEN pour Sugeno
+                                 //Evalue et memorise left
 
     vector<core::Expression<double>* > sf;
     sf.push_back(&service);
     sf.push_back(&food);
     vector<core::Expression<double>* > s;
-    s.push_back(&service);
+    s.push_back(&service); //On ajoute les valeurs d'entrée
 
     std::vector<core::Expression<double>*> regles;
 
     regles.push_back(
         f.NewThen(
             f.NewOr(
-                f.NewIs(&poor,&service),
-                f.NewIs(&rancid,&food)
+                f.NewIs(&poor,&service),  //On instaure les regles
+                f.NewIs(&rancid,&food)    //Comme en Mandani
             ),
             f.NewConclusion(&sf)
         )
     );
-
+    //On crée les différentes conclusions
     regles.push_back(
         f.NewThen(
             f.NewIs(&good,&service),
@@ -371,7 +372,7 @@ void testSystemeReel()
     );
 
 
-    Expression<double> *res2 = f.NewSugeno(&regles);
+    Expression<double> *res2 = f.NewSugeno(&regles); //Il defuzzyfi les conclusions
 
     try
     {
