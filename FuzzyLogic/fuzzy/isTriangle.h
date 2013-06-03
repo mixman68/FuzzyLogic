@@ -31,7 +31,7 @@ namespace fuzzy
 
         if (operand<=med)
             result = (operand - min)/(med-min);
-        else if (operand>med)
+        else
             result = (max - operand)/(max-med);
 
         return result;

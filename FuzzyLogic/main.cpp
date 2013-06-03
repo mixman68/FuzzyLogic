@@ -5,6 +5,7 @@
 #include "fuzzy/is.h"
 #include "fuzzy/isTriangle.h"
 #include "fuzzy/isGaussian.h"
+#include "fuzzy/isTrapeze.h"
 
 #include "core/FuzzyFactory.h"
 
@@ -265,11 +266,11 @@ void testExempleSimplifie()
 
 void testSystemeReel()
 {
-    isTriangle<double> poor(-5.0,0.0,5.0);//gaussien
-    isTriangle<double> good(0.0,5.0,10.0);//gaussien
-    isTriangle<double> excellent(5.0,10.0,15.0);//gaussien
-    isTriangle<double> rancid(-5.0,0.0,5.0); //trapeze
-    isTriangle<double> delicious(5.0,10.0,15.0); // trapeze
+    isGaussian<double> poor(10.0/3,0.0);//gaussien
+    isGaussian<double> good(10.0/3,5.0);//gaussien
+    isGaussian<double> excellent(10.0/3,10.0);//gaussien
+    isTrapeze<double> rancid(-1.0,0.0,2.0,4.0); //trapeze
+    isTrapeze<double> delicious(6.0,8.0,10.0,11.0); // trapeze
 
     isTriangle<double> average(10.0,15.0,20.0);
     isTriangle<double> generous(20.0,25.0,30.0);
@@ -293,8 +294,8 @@ void testSystemeReel()
 
     // HOp on coefficiente un peu
 
-    ValueModel<double> service(8.0);
-    ValueModel<double> food(2.0);
+    ValueModel<double> service(3.0);
+    ValueModel<double> food(8.0);
     ValueModel<double> tips(1.0);
 
     //On cre la factory
