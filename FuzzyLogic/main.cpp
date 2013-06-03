@@ -287,8 +287,8 @@ void testSystemeReel()
     SugenoDefuzz<double> opSugeno;
 
     vector<double> coefs;
-    coefs.push_back(1); //Coef service
-    coefs.push_back(1); //Coef food
+    coefs.push_back(1);
+    coefs.push_back(1);
     SugenoConclusion<double> opConclusion (&coefs);
 
 
