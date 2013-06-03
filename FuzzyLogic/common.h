@@ -3,4 +3,4 @@
 
 #include <iostream>
 
-#endif COMMON_H
+#endif //COMMON_H

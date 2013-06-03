@@ -5,6 +5,7 @@
 #include "fuzzy/is.h"
 #include "fuzzy/isTriangle.h"
 #include "fuzzy/isGaussian.h"
+#include "fuzzy/isTrapeze.h"
 
 #include "core/FuzzyFactory.h"
 
@@ -265,11 +266,11 @@ void testExempleSimplifie()
 
 void testSystemeReel()
 {
-    isTriangle<double> poor(-5.0,0.0,5.0);//gaussien
-    isTriangle<double> good(0.0,5.0,10.0);//gaussien
-    isTriangle<double> excellent(5.0,10.0,15.0);//gaussien
-    isTriangle<double> rancid(-5.0,0.0,5.0); //trapeze
-    isTriangle<double> delicious(5.0,10.0,15.0); // trapeze
+    isGaussian<double> poor(10.0/3,0.0);//gaussien
+    isGaussian<double> good(10.0/3,5.0);//gaussien
+    isGaussian<double> excellent(10.0/3,10.0);//gaussien
+    isTrapeze<double> rancid(-1.0,0.0,2.0,4.0); //trapeze
+    isTrapeze<double> delicious(6.0,8.0,10.0,11.0); // trapeze
 
     isTriangle<double> average(10.0,15.0,20.0);
     isTriangle<double> generous(20.0,25.0,30.0);
@@ -293,8 +294,8 @@ void testSystemeReel()
 
     // HOp on coefficiente un peu
 
-    ValueModel<double> service(8.0);
-    ValueModel<double> food(2.0);
+    ValueModel<double> service(3.0);
+    ValueModel<double> food(8.0);
     ValueModel<double> tips(1.0);
 
     //On cre la factory
@@ -305,25 +306,26 @@ void testSystemeReel()
             f.NewAgg(
                 f.NewThen(
                     f.NewOr(
-                        f.NewIs(&poor,&service),
-                        f.NewIs(&rancid,&food)
+                        f.NewIs(&poor,&service), //On affirme que le service est mauvais
+                        f.NewIs(&rancid,&food)   //OU que la nourriture est mauvaise
                     ),
-                    f.NewIs(&cheap,&tips)
+                    f.NewIs(&cheap,&tips)        //DONC le pourboir sera médiocre
                 ),f.NewThen(
-                    f.NewIs(&good,&service),
-                    f.NewIs(&average,&tips)
+                    f.NewIs(&good,&service),     //De la même manière on affirme que le service est bon
+                    f.NewIs(&average,&tips)      //DONC le pouboir sera moyen
                 )
 
             ),f.NewThen(
                 f.NewOr(
-                    f.NewIs(&excellent,&service),
-                    f.NewIs(&delicious,&food)
+                    f.NewIs(&excellent,&service),//Le service est parfait
+                    f.NewIs(&delicious,&food)    //OU que la nourriture est delicieuse
                 ),
-                f.NewIs(&generous,&tips)
+                f.NewIs(&generous,&tips)         //DONC on sera très généreux !!
             )
         );
 
-    core::Expression<double> *defuzz = f.NewMamdani(&tips, res);
+    core::Expression<double> *defuzz = f.NewMamdani(&tips, res); //On cherche le centre de
+                                                                 //gravité du résultat
 
     cout << "Systeme pouboire reultat Mamdani :" << defuzz->Evaluate() << endl;
 

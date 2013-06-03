@@ -31,7 +31,7 @@ T isTrapeze<T>::Evaluate(Expression<T>* _operand) const
     else if (operand >= this->mMin && operand <= this->mMax)
         result = 1 ;
     else if(operand >= this->min && operand <= this->mMin)
-        result = (operand - this->min)/(this->mid1 - this->min);
+        result = (operand - this->min)/(this->mMin - this->min);
     else
         result = (this->max - operand)/(this->max - this->mMax);
 
