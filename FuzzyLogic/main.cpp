@@ -306,25 +306,26 @@ void testSystemeReel()
             f.NewAgg(
                 f.NewThen(
                     f.NewOr(
-                        f.NewIs(&poor,&service),
-                        f.NewIs(&rancid,&food)
+                        f.NewIs(&poor,&service), //On affirme que le service est mauvais
+                        f.NewIs(&rancid,&food)   //OU que la nourriture est mauvaise
                     ),
-                    f.NewIs(&cheap,&tips)
+                    f.NewIs(&cheap,&tips)        //DONC le pourboir sera médiocre
                 ),f.NewThen(
-                    f.NewIs(&good,&service),
-                    f.NewIs(&average,&tips)
+                    f.NewIs(&good,&service),     //De la même manière on affirme que le service est bon
+                    f.NewIs(&average,&tips)      //DONC le pouboir sera moyen
                 )
 
             ),f.NewThen(
                 f.NewOr(
-                    f.NewIs(&excellent,&service),
-                    f.NewIs(&delicious,&food)
+                    f.NewIs(&excellent,&service),//Le service est parfait
+                    f.NewIs(&delicious,&food)    //OU que la nourriture est delicieuse
                 ),
-                f.NewIs(&generous,&tips)
+                f.NewIs(&generous,&tips)         //DONC on sera très généreux !!
             )
         );
 
-    core::Expression<double> *defuzz = f.NewMamdani(&tips, res);
+    core::Expression<double> *defuzz = f.NewMamdani(&tips, res); //On cherche le centre de
+                                                                 //gravité du résultat
 
     cout << "Systeme pouboire reultat Mamdani :" << defuzz->Evaluate() << endl;
 
