@@ -252,20 +252,139 @@ void testExempleSimplifie()
 
     Expression<double> *res2 = f.NewSugeno(&regles);
 
-try{
-    cout << "Sugeno :" << res2->Evaluate() << endl;
-} catch(SugenoException* ex)
-{
-    ex->PrintOn(cerr) << endl;
+    try
+    {
+        cout << "Sugeno :" << res2->Evaluate() << endl;
+    }
+    catch(SugenoException* ex)
+    {
+        ex->PrintOn(cerr) << endl;
+    }
+
 }
 
+void testSystemeReel()
+{
+    isTriangle<double> poor(-5.0,0.0,5.0);//gaussien
+    isTriangle<double> good(0.0,5.0,10.0);//gaussien
+    isTriangle<double> excellent(5.0,10.0,15.0);//gaussien
+    isTriangle<double> rancid(-5.0,0.0,5.0); //trapeze
+    isTriangle<double> delicious(5.0,10.0,15.0); // trapeze
+
+    isTriangle<double> average(10.0,15.0,20.0);
+    isTriangle<double> generous(20.0,25.0,30.0);
+    isTriangle<double> cheap(0.0,5.0,10.0);
+
+    //Definitin des operateurs !
+
+    NotMinus1<double> opNot;
+    AndMin<double> opAnd;
+    OrMax<double> opOr;
+    AggMax<double> opAgg;
+    ThenMin<double> opThen;
+    CogDefuzz<double> opDefuzz(0.0,30.0,1.0);
+    SugenoDefuzz<double> opSugeno;
+
+    vector<double> coefs;
+    coefs.push_back(1); //Coef service
+    coefs.push_back(1); //Coef food
+    SugenoConclusion<double> opConclusion (&coefs);
+
+
+    // HOp on coefficiente un peu
+
+    ValueModel<double> service(8.0);
+    ValueModel<double> food(2.0);
+    ValueModel<double> tips(1.0);
+
+    //On cre la factory
+
+    FuzzyFactory<double> f(&opNot,&opAnd,&opOr,&opAgg,&opThen,&opDefuzz, &opSugeno, &opConclusion);
+    core::Expression<double> *res =
+        f.NewAgg(
+            f.NewAgg(
+                f.NewThen(
+                    f.NewOr(
+                        f.NewIs(&poor,&service),
+                        f.NewIs(&rancid,&food)
+                    ),
+                    f.NewIs(&cheap,&tips)
+                ),f.NewThen(
+                    f.NewIs(&good,&service),
+                    f.NewIs(&average,&tips)
+                )
+
+            ),f.NewThen(
+                f.NewOr(
+                    f.NewIs(&excellent,&service),
+                    f.NewIs(&delicious,&food)
+                ),
+                f.NewIs(&generous,&tips)
+            )
+        );
+
+    core::Expression<double> *defuzz = f.NewMamdani(&tips, res);
+
+    cout << "Systeme pouboire reultat Mamdani :" << defuzz->Evaluate() << endl;
+
+    cout << "Mode sugeno" << endl;
+    fuzzy::SugenoThen<double> opThenSugeno;
+    f.ChangeThen(&opThenSugeno);
+
+    vector<core::Expression<double>* > sf;
+    sf.push_back(&service);
+    sf.push_back(&food);
+    vector<core::Expression<double>* > s;
+    s.push_back(&service);
+
+    std::vector<core::Expression<double>*> regles;
+
+    regles.push_back(
+        f.NewThen(
+            f.NewOr(
+                f.NewIs(&poor,&service),
+                f.NewIs(&rancid,&food)
+            ),
+            f.NewConclusion(&sf)
+        )
+    );
+
+    regles.push_back(
+        f.NewThen(
+            f.NewIs(&good,&service),
+            f.NewConclusion(&s)
+        )
+    );
+
+    regles.push_back(
+        f.NewThen(
+            f.NewOr(
+                f.NewIs(&excellent,&service),
+                f.NewIs(&delicious,&food)
+            ),
+            f.NewConclusion(&sf)
+        )
+    );
+
+
+    Expression<double> *res2 = f.NewSugeno(&regles);
+
+    try
+    {
+        cout << "Sugeno :" << res2->Evaluate() << endl;
+    }
+    catch(SugenoException* ex)
+    {
+        ex->PrintOn(cerr) << endl;
+    }
 }
 int main()
 {
     cout << "Hello world!" << endl;
-    tests();
-    testExempleSansFactory();
-    testExempleSimplifie();
+    //tests();
+    //testExempleSansFactory();
+    //testExempleSimplifie();
+    testSystemeReel();
     return 0;
 }
 
