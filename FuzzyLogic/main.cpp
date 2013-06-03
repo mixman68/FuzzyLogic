@@ -160,9 +160,11 @@ void testExempleSimplifie()
     CogDefuzz<double> opDefuzz(0.0,30.0,1.0);
     SugenoDefuzz<double> opSugeno;
 
+    //Definition des poids des entrées(pour Sugeno)
+
     vector<double> coefs;
-    coefs.push_back(1); //Coef service
-    coefs.push_back(1); //Coef food
+    coefs.push_back(1); //Poids service
+    coefs.push_back(1); //Poids food
     SugenoConclusion<double> opConclusion (&coefs);
 
 
@@ -294,8 +296,8 @@ void testSystemeReel()
 
     // HOp on coefficiente un peu
 
-    ValueModel<double> service(3.0);
-    ValueModel<double> food(8.0);
+    ValueModel<double> service(8.0);
+    ValueModel<double> food(3.0);
     ValueModel<double> tips(1.0);
 
     //On cre la factory
