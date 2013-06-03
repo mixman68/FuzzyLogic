@@ -39,7 +39,7 @@ public:
 protected:
 private:
     BinaryShadowExpression<T> et,ou,then,agg,defuzz,mamdani;
-    UnaryShadowExpression<T>* non;
+    UnaryShadowExpression<T> non;
     NaryShadowExpression<T> sugeno,conclusion;
 
 };
