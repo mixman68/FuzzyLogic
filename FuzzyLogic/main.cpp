@@ -7,7 +7,7 @@
 #include "fuzzy/isGaussian.h"
 #include "fuzzy/isTrapeze.h"
 
-#include "core/FuzzyFactory.h"
+#include "fuzzy/FuzzyFactory.h"
 
 using namespace std;
 using namespace core;
@@ -296,8 +296,8 @@ void testSystemeReel()
 
     // HOp on coefficiente un peu
 
-    ValueModel<double> service(8.0);
-    ValueModel<double> food(3.0);
+    ValueModel<double> service(3.0);
+    ValueModel<double> food(8.0);
     ValueModel<double> tips(1.0);
 
     //On cre la factory
